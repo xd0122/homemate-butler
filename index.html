@@ -150,9 +150,9 @@
       <h3 class="sec">多人协作与数据同步（重点设计）</h3>
       <div class="summary-line">
         合租场景下数据<b>不属于个人而属于房间</b>，因此本产品以「房间」为数据容器：<br>
-        ① 每个寝室一个 <b>房间码</b>，室友输入房间码即进入同一份数据，所有修改实时同步（本页数据当前保存于浏览器，同浏览器多开标签页已可实时同步演示）；<br>
-        ② <b>同步引擎</b>已按「本地优先 + 云端通道」架构实现：接入同步服务器后即可跨设备/跨室友实时同步（每人可设置自己的身份，操作动态记录操作人）；<br>
-        ③ 当前演示版数据存于本机浏览器，<b>云同步服务器为标准 REST 接口（GET/PUT /api/room/:code），部署后端即启用跨设备同步</b>，前端无需改动。
+        ① 每个寝室一个 <b>房间码</b>，室友输入房间码即进入同一份数据，所有修改<b>实时云同步</b>（每人可切换自己的身份，操作动态记录操作人）；<br>
+        ② <b>同步引擎</b>按「本地优先 + 云端通道」架构实现：默认连接云同步服务器，账单/排班/物品/公约的每一次修改都会推送云端，其他室友打开同一房间码页面即可看到最新数据（4 秒内自动同步）；<br>
+        ③ 云端不可达时自动降级为本地模式（数据存本机浏览器），恢复后自动续传，<b>接口为标准 REST（GET/PUT /api/room/:code），可随时替换自建后端</b>。
       </div>
       <div class="stat-grid" style="margin-top:14px">
         <div class="stat"><b id="stat-roommates">0</b><span>在住室友</span></div>
@@ -355,6 +355,7 @@ async function cloudPull(){
     const r = await fetch(STATE.settings.apiBase + '/api/room/' + STATE.room);
     if (r.ok) {
       const d = await r.json();
+      if (d && d.empty) { cloudPush(); setSync('● 云同步中'); return; }  // 云端无数据 → 首次上传本房间数据
       if (d && d.updatedAt > STATE.updatedAt) {
         const keepApi = STATE.settings.apiBase;
         STATE = d; STATE.settings.apiBase = keepApi;
@@ -696,14 +697,15 @@ function renderAll(){
 }
 
 // ================= 启动 =================
+const DEFAULT_API = 'https://42f047e5995742db852d9ca9415cc403.app.workbuddy.host'; // 云同步服务器（跨室友跨设备同步）
 (function init(){
-  // 云同步地址（可选）：URL 带 ?api= 即启用
+  // 云同步地址：URL ?api= 可覆盖，默认使用内置同步服务器
   let room = localStorage.getItem('homemate_room');
   if (!room) { room = Array.from({length:6},()=> 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*31)]).join(''); }
   openRoom(room);
   const api = new URLSearchParams(location.search).get('api');
-  if (api) { STATE.settings.apiBase = api.replace(/\/$/,''); localStorage.setItem('homemate_api', STATE.settings.apiBase); }
-  else { STATE.settings.apiBase = localStorage.getItem('homemate_api') || ''; }
+  STATE.settings.apiBase = (api ? api.replace(/\/$/,'') : (localStorage.getItem('homemate_api') || DEFAULT_API));
+  localStorage.setItem('homemate_api', STATE.settings.apiBase);
   if (STATE.settings.apiBase) setSync('● 云同步中');
   setInterval(cloudPull, 4000);
 })();
