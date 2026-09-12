@@ -6,13 +6,13 @@
 <title>合租生活管家 · HomeMate</title>
 <style>
   :root {
-    --primary: #4f6ef7; --primary-light: #eef1fe; --bg: #f6f7fb; --card: #fff;
-    --text: #22263a; --muted: #7a7f95; --border: #e6e8f0;
-    --danger: #e5484d; --green: #2f9e6e; --orange: #e8890c; --purple: #7b5cf0;
+    --primary: #ef7d54; --primary-light: #fdeee6; --bg: #faf6f0; --card: #fff;
+    --text: #3d332b; --muted: #9a8b7d; --border: #efe3d6;
+    --danger: #d9534f; --green: #4f9d69; --orange: #e8a13c; --purple: #c96f9a;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
-  header { background:linear-gradient(135deg,#4f6ef7 0%,#7b5cf0 100%); color:#fff; padding:22px 16px 74px; text-align:center; }
+  header { background:linear-gradient(135deg,#f6a45c 0%,#ec7466 100%); color:#fff; padding:22px 16px 74px; text-align:center; }
   header h1 { font-size:24px; margin-bottom:4px; }
   header p { opacity:.85; font-size:13px; }
   .topbar { display:flex; gap:8px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:12px; font-size:13px; }
@@ -21,10 +21,10 @@
   .topbar select { border:none; border-radius:99px; padding:4px 8px; font-size:13px; }
   .topbar button.mini { background:#fff; color:var(--primary); border:none; border-radius:99px; padding:4px 12px; cursor:pointer; font-size:12px; font-weight:600; }
   .container { max-width:1000px; margin:-52px auto 40px; padding:0 16px; }
-  nav { display:flex; gap:8px; background:var(--card); border-radius:14px; padding:8px; box-shadow:0 8px 24px rgba(40,50,100,.08); overflow-x:auto; }
+  nav { display:flex; gap:8px; background:var(--card); border-radius:14px; padding:8px; box-shadow:0 8px 24px rgba(160,100,60,.12); overflow-x:auto; }
   nav button { flex:1; min-width:88px; border:none; background:transparent; padding:10px 6px; font-size:14px; border-radius:10px; cursor:pointer; color:var(--muted); white-space:nowrap; }
   nav button.active { background:var(--primary); color:#fff; font-weight:600; }
-  .card { background:var(--card); border-radius:14px; padding:20px; margin-top:16px; box-shadow:0 4px 14px rgba(40,50,100,.06); }
+  .card { background:var(--card); border-radius:14px; padding:20px; margin-top:16px; box-shadow:0 4px 14px rgba(160,100,60,.08); }
   .card h2 { font-size:17px; margin-bottom:12px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .card h2 .tag { font-size:11px; font-weight:normal; color:var(--muted); background:var(--bg); padding:2px 8px; border-radius:99px; }
   h3.sec { font-size:14px; color:var(--muted); margin:18px 0 10px; font-weight:600; }
@@ -83,7 +83,7 @@
   .modal-mask.show { display:flex; }
   .modal { background:#fff; border-radius:14px; padding:20px; max-width:520px; width:100%; max-height:85vh; overflow:auto; }
   .modal h3 { margin-bottom:12px; font-size:16px; }
-  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#22263a; color:#fff; padding:9px 18px; border-radius:99px; font-size:13px; opacity:0; transition:.3s; z-index:99; pointer-events:none; }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#4a3a2e; color:#fff; padding:9px 18px; border-radius:99px; font-size:13px; opacity:0; transition:.3s; z-index:99; pointer-events:none; }
   .toast.show { opacity:.95; }
   .receipt-thumb { width:44px; height:32px; object-fit:cover; border-radius:6px; cursor:pointer; border:1px solid var(--border); }
   .receipt-img { max-width:100%; border-radius:10px; margin-top:8px; }
@@ -102,75 +102,22 @@
   <h1>🏠 合租生活管家</h1>
   <p>账本透明 · 排班清晰 · 物品有账 · 公约有据 · 数据同步</p>
   <div class="topbar">
-    <span class="pill">🚪 房间码 <b id="room-code">------</b></span>
-    <span class="pill">加入房间 <input id="join-room" placeholder="输入房间码" maxlength="6"><button class="mini" onclick="joinRoom()">进入</button></span>
+    <span class="pill" style="cursor:pointer" onclick="openRoomModal()" title="点击设置房间/密码/成员">🚪 房间 <b id="room-code">------</b>　⚙️</span>
     <span class="pill">我是 <select id="me-select" onchange="setMe(this.value)"></select></span>
-    <span class="pill sync-badge" id="sync-status">● 本地模式</span>
+    <span class="pill sync-badge" id="sync-status">● 云同步中</span>
   </div>
 </header>
 
 <div class="container">
   <nav>
-    <button class="active" data-tab="home">📌 总览</button>
-    <button data-tab="bill">💰 费用分摊</button>
+    <button class="active" data-tab="bill">💰 费用分摊</button>
     <button data-tab="clean">🧹 值日日历</button>
     <button data-tab="items">📦 公共物品</button>
     <button data-tab="rules">📜 室友公约</button>
   </nav>
 
-  <!-- ============ 总览 ============ -->
-  <section id="tab-home">
-    <div class="card">
-      <h2>产品背景与痛点拆解</h2>
-      <div class="pain-grid">
-        <div class="pain"><div class="p-t">💸 痛点1：费用算不清</div>
-          房租水电垫付后<b>口算扯皮</b>，谁付了、谁欠谁没有依据。
-          <div class="p-n"><span class="arrow">→ 需求：</span>自动记账 + 人均分摊 + 每人实时应收/应付 + <b>结清留痕</b> + 凭证可追溯
-          <span class="arrow">→ 模块：</span>💰费用分摊</div></div>
-        <div class="pain"><div class="p-t">🧹 痛点2：值日排班混乱</div>
-          微信群里排班<b>刷屏就忘</b>，谁哪天干什么、做没做没人知道。
-          <div class="p-n"><span class="arrow">→ 需求：</span>日历化排班，按天点开看任务 + 打卡完成 + 自动轮值
-          <span class="arrow">→ 模块：</span>🧹值日日历</div></div>
-        <div class="pain"><div class="p-t">📦 痛点3：公共物品没人管</div>
-          用品<b>用完才发现没了</b>，谁买的、还剩多少全是糊涂账。
-          <div class="p-n"><span class="arrow">→ 需求：</span>登记购买人/库存 + 消耗与补货动态 + 低于提醒线自动预警
-          <span class="arrow">→ 模块：</span>📦公共物品</div></div>
-        <div class="pain"><div class="p-t">📜 痛点4：口头约定无据</div>
-          「说好23点后安静」<b>说过就忘</b>，矛盾时各执一词。
-          <div class="p-n"><span class="arrow">→ 需求：</span>公约白纸黑字上墙 + 全员逐条确认留名
-          <span class="arrow">→ 模块：</span>📜室友公约</div></div>
-      </div>
-      <h3 class="sec">产品架构</h3>
-      <div class="arch">
-        <div class="box"><b>多人同步层</b>房间码 · 身份 · 本地/云同步引擎</div>
-        <div class="box"><b>数据层</b>账单 / 值日 / 物品 / 公约 / 成员</div>
-        <div class="box"><b>应用层</b>AA结算 · 日历排班 · 库存预警 · 公约确认</div>
-        <div class="box"><b>信任层</b>凭证追溯 · 结清留痕 · 操作动态</div>
-      </div>
-      <h3 class="sec">多人协作与数据同步（重点设计）</h3>
-      <div class="summary-line">
-        合租场景下数据<b>不属于个人而属于房间</b>，因此本产品以「房间」为数据容器：<br>
-        ① 每个寝室一个 <b>房间码</b>，室友输入房间码即进入同一份数据，所有修改<b>实时云同步</b>（每人可切换自己的身份，操作动态记录操作人）；<br>
-        ② <b>同步引擎</b>按「本地优先 + 云端通道」架构实现：默认连接云同步服务器，账单/排班/物品/公约的每一次修改都会推送云端，其他室友打开同一房间码页面即可看到最新数据（4 秒内自动同步）；<br>
-        ③ 云端不可达时自动降级为本地模式（数据存本机浏览器），恢复后自动续传，<b>接口为标准 REST（GET/PUT /api/room/:code），可随时替换自建后端</b>。
-      </div>
-      <div class="stat-grid" style="margin-top:14px">
-        <div class="stat"><b id="stat-roommates">0</b><span>在住室友</span></div>
-        <div class="stat"><b id="stat-open-bills">0</b><span>未结清账单</span></div>
-        <div class="stat"><b id="stat-duty-todo">0</b><span>本月待值日</span></div>
-        <div class="stat"><b id="stat-item-low">0</b><span>需补货物品</span></div>
-      </div>
-      <h3 class="sec">室友成员管理 <span class="tag">分摊人数与身份以此为准</span></h3>
-      <div class="form-row">
-        <input id="new-roommate" placeholder="新室友昵称" style="max-width:220px">
-        <button class="primary" onclick="addRoommate()">添加成员</button>
-      </div>
-      <div id="roommate-list" class="filter-chips"></div>
-    </div>
-  </section>
-
   <!-- ============ 费用 ============ -->
-  <section id="tab-bill" hidden>
+  <section id="tab-bill">
     <div class="card">
       <h2>💰 费用 AA 分摊 <span class="tag">自动按人均摊 · 结清留痕 · 凭证可追溯</span></h2>
       <div class="form-row">
@@ -252,7 +199,7 @@
     </div>
   </section>
 
-  <footer>合租生活管家 HomeMate · v1.0 · 房间数据以房间码隔离 · 凭证与操作留痕可追溯</footer>
+  <footer>合租生活管家 HomeMate · v1.1 · 房间码 + 密码保护 · 云同步 · 凭证与操作留痕可追溯</footer>
 </div>
 
 <div class="modal-mask" id="modal-mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
@@ -304,13 +251,9 @@ function seed() {
 }
 
 function roomKey(){ return 'homemate_v2_' + STATE.room; }
+const roomPw = () => localStorage.getItem('homemate_pw_' + STATE.room) || '';
 let STATE = null;
 
-function loadRoom(code, fresh){
-  const saved = localStorage.getItem('homemate_v2_' + code);
-  if (saved && !fresh) { try { return JSON.parse(saved); } catch(e){} }
-  const s = seed(); return s;
-}
 function persist(broadcast=true){
   STATE.updatedAt = Date.now();
   try { localStorage.setItem(roomKey(), JSON.stringify(STATE)); }
@@ -338,48 +281,84 @@ window.addEventListener('storage', e => {
   renderAll(); toast('🔄 已同步室友的更新');
 });
 
-// —— 云同步通道（REST：GET/PUT /api/room/:code，部署后端即自动启用）——
+// —— 云同步通道（REST：GET/PUT /api/room/:code，房间密码保护）——
 let pushTimer = null;
 function queueCloudPush(){ clearTimeout(pushTimer); pushTimer = setTimeout(cloudPush, 800); }
 async function cloudPush(){
   if (!STATE || !STATE.settings.apiBase) return;
   try {
-    await fetch(STATE.settings.apiBase + '/api/room/' + STATE.room, {
-      method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(STATE)
+    const r = await fetch(STATE.settings.apiBase + '/api/room/' + STATE.room, {
+      method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ pw: roomPw(), state: STATE })
     });
+    if (r.status === 403) setSync('🔒 房间密码不正确');
   } catch(e){ setSync('⚠️ 云端推送失败（本地模式生效）'); }
 }
 async function cloudPull(){
   if (!STATE || !STATE.settings.apiBase) return;
   try {
-    const r = await fetch(STATE.settings.apiBase + '/api/room/' + STATE.room);
+    const r = await fetch(STATE.settings.apiBase + '/api/room/' + STATE.room + '?pw=' + encodeURIComponent(roomPw()));
+    if (r.status === 403) { setSync('🔒 需要正确的房间密码'); return; }
     if (r.ok) {
       const d = await r.json();
-      if (d && d.empty) { cloudPush(); setSync('● 云同步中'); return; }  // 云端无数据 → 首次上传本房间数据
+      if (d && d.empty) { if (roomPw()) cloudPush(); setSync('● 云同步中'); return; }  // 云端无数据 → 首次上传本房间
       if (d && d.updatedAt > STATE.updatedAt) {
         const keepApi = STATE.settings.apiBase;
         STATE = d; STATE.settings.apiBase = keepApi;
         localStorage.setItem(roomKey(), JSON.stringify(STATE));
-        renderAll(); toast('☁️ 已从云端同步室友的更新');
+        renderAll(); toast('☁️ 已同步室友的更新');
       }
+      setSync('● 云同步中');
     }
-    setSync('● 云同步中');
   } catch(e){ setSync('⚠️ 云端未连接（本地模式）'); }
 }
 function setSync(t){ $('sync-status').textContent = t; }
 
-function joinRoom(){
-  const code = ($('join-room').value || '').trim().toUpperCase();
-  if (!/^[A-Z0-9]{4,6}$/.test(code)) return toast('房间码为 4-6 位字母/数字');
-  openRoom(code);
-  toast('已进入房间 ' + code + (STATE.settings.apiBase ? '（云同步）' : '（本地模式，同浏览器标签页可同步）'));
+// —— 房间设置（房间码 + 密码 + 成员管理）——
+function openRoomModal(){
+  openModal(`<h3>🏠 房间设置</h3>
+    <div class="summary-line" style="margin:0 0 12px">当前房间码：<b>${esc(STATE.room)}</b><br>
+    <span class="muted">把「房间码 + 房间密码」发给室友，对方即可进入同一房间共同管理，数据实时云同步。</span></div>
+    <div class="form-row">
+      <input id="m-room" placeholder="房间码(4-6位字母/数字)" maxlength="6" value="${esc(STATE.room)}" style="text-transform:uppercase">
+      <input id="m-pw" type="password" placeholder="房间密码(至少4位)">
+    </div>
+    <div class="form-row">
+      <button class="primary" onclick="roomModalJoin()">🔑 加入房间</button>
+      <button class="ghost" onclick="roomModalCreate()">✨ 创建新房间</button>
+    </div>
+    <h3 class="sec">室友成员管理 <span class="tag">分摊人数与身份以此为准</span></h3>
+    <div class="form-row"><input id="new-roommate" placeholder="新室友昵称"><button class="primary" onclick="addRoommate()">添加成员</button></div>
+    <div class="filter-chips" id="roommate-list"></div>
+    <div style="text-align:right;margin-top:8px"><button class="ghost" onclick="closeModal()">关闭</button></div>`);
+  renderRoommates();
 }
-function openRoom(code){
+function roomModalJoin(){
+  const code = ($('m-room').value||'').trim().toUpperCase();
+  const pw = $('m-pw').value;
+  if (!/^[A-Z0-9]{4,6}$/.test(code)) return toast('房间码为 4-6 位字母/数字');
+  if (!pw) return toast('请输入房间密码');
+  const api = STATE ? STATE.settings.apiBase : (localStorage.getItem('homemate_api')||DEFAULT_API);
+  let data;
+  const saved = localStorage.getItem('homemate_v2_' + code);
+  if (saved) { try { data = JSON.parse(saved); } catch(e){ data = seed(); } } else data = seed();
   localStorage.setItem('homemate_room', code);
-  STATE = loadRoom(code);
-  persist(false);
-  if (!STATE.roommates.includes(me())) ensureMe();
-  renderAll(); cloudPull();
+  localStorage.setItem('homemate_pw_' + code, pw);
+  STATE = data; STATE.room = code; STATE.settings.apiBase = api;
+  persist(false); ensureMe(); renderAll(); closeModal(); cloudPull();
+  toast('已进入房间 ' + code + '，数据将自动云同步');
+}
+function roomModalCreate(){
+  const code = ($('m-room').value||'').trim().toUpperCase();
+  const pw = $('m-pw').value;
+  if (!/^[A-Z0-9]{4,6}$/.test(code)) return toast('房间码为 4-6 位字母/数字');
+  if (pw.length < 4) return toast('密码至少 4 位');
+  const api = STATE ? STATE.settings.apiBase : (localStorage.getItem('homemate_api')||DEFAULT_API);
+  localStorage.setItem('homemate_room', code);
+  localStorage.setItem('homemate_pw_' + code, pw);
+  STATE = seed(); STATE.room = code; STATE.settings.apiBase = api;
+  persist(false); ensureMe(); renderAll(); closeModal();
+  cloudPush(); cloudPull();
+  toast('房间 ' + code + ' 创建成功，把房间码和密码告诉室友吧 🏠');
 }
 function ensureMe(){
   let meName = localStorage.getItem('homemate_me');
@@ -660,13 +639,13 @@ function addRoommate(){
   const n = $('new-roommate').value.trim();
   if (!n) return toast('请输入昵称');
   if (STATE.roommates.includes(n)) return toast('该成员已存在');
-  STATE.roommates.push(n); persist(); renderAll(); $('new-roommate').value=''; toast('已添加成员 ✓');
+  STATE.roommates.push(n); persist(); renderAll(); openRoomModal(); toast('已添加成员 ✓');
 }
 function delRoommate(name){
   if (STATE.roommates.length <= 1) return toast('至少保留一名成员');
   STATE.roommates = STATE.roommates.filter(r=>r!==name);
   if (me()===name) localStorage.setItem('homemate_me', STATE.roommates[0]);
-  persist(); renderAll();
+  persist(); renderAll(); openRoomModal();
 }
 function renderRoommates(){
   $('roommate-list').innerHTML = STATE.roommates.map(r =>
@@ -674,26 +653,17 @@ function renderRoommates(){
   $('me-select').innerHTML = STATE.roommates.map(r=>`<option ${r===me()?'selected':''}>${esc(r)}</option>`).join('');
 }
 
-// ================= 总览统计 =================
-function renderStats(){
-  $('stat-roommates').textContent = STATE.roommates.length;
-  $('stat-open-bills').textContent = STATE.bills.filter(b=>!b.settled).length;
-  const mKey = fmtD(new Date()).slice(0,7);
-  $('stat-duty-todo').textContent = STATE.duties.filter(d=>d.date.slice(0,7)===mKey && !d.done).length;
-  $('stat-item-low').textContent = STATE.items.filter(it=>it.qty<=it.th).length;
-}
-
 // ================= Tab & 渲染总入口 =================
 document.querySelectorAll('nav button').forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    ['home','bill','clean','items','rules'].forEach(t => $('tab-'+t).hidden = (t!==btn.dataset.tab));
+    ['bill','clean','items','rules'].forEach(t => $('tab-'+t).hidden = (t!==btn.dataset.tab));
   };
 });
 function renderAll(){
   $('room-code').textContent = STATE.room;
-  renderRoommates(); renderBills(); renderCal(); renderItems(); renderRules(); renderStats();
+  renderRoommates(); renderBills(); renderCal(); renderItems(); renderRules();
 }
 
 // ================= 启动 =================
@@ -702,12 +672,17 @@ const DEFAULT_API = 'https://42f047e5995742db852d9ca9415cc403.app.workbuddy.host
   // 云同步地址：URL ?api= 可覆盖，默认使用内置同步服务器
   let room = localStorage.getItem('homemate_room');
   if (!room) { room = Array.from({length:6},()=> 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*31)]).join(''); }
-  openRoom(room);
+  STATE = seed(); STATE.room = room;
   const api = new URLSearchParams(location.search).get('api');
   STATE.settings.apiBase = (api ? api.replace(/\/$/,'') : (localStorage.getItem('homemate_api') || DEFAULT_API));
   localStorage.setItem('homemate_api', STATE.settings.apiBase);
-  if (STATE.settings.apiBase) setSync('● 云同步中');
+  const saved = localStorage.getItem('homemate_v2_' + room);
+  if (saved) { try { const d = JSON.parse(saved); d.settings.apiBase = STATE.settings.apiBase; STATE = d; } catch(e){} }
+  persist(false); ensureMe(); renderAll();
+  setSync('● 云同步中');
+  cloudPull();
   setInterval(cloudPull, 4000);
+  if (!roomPw()) setTimeout(openRoomModal, 500); // 首次访问 → 引导创建房间并设置密码
 })();
 </script>
 </body>
