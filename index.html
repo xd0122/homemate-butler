@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="D2iOtSjhrnqVAYoqvqBObz">
+<head data-page-node-id="5LA0FTeVEMzn9Oh9W3L76k">
+<meta charset="UTF-8" data-page-node-id="gTK1OtRkxHcnyAtN7cCyHY">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="kZWWzCmjNQ66BErTHl67mG">
 <title>合租生活管家 · HomeMate</title>
 <style>
   :root {
@@ -96,114 +96,114 @@
   .muted { color:var(--muted); font-size:12px; }
 </style>
 </head>
-<body>
+<body data-page-node-id="dGqeJBK3dxQK0aCgaWeWtq">
 
-<header>
-  <h1>🏠 合租生活管家</h1>
-  <p>账本透明 · 排班清晰 · 物品有账 · 公约有据 · 数据同步</p>
-  <div class="topbar">
-    <span class="pill" style="cursor:pointer" onclick="openRoomModal()" title="点击设置房间/密码/成员">🚪 房间 <b id="room-code">------</b>　⚙️</span>
-    <span class="pill">我是 <select id="me-select" onchange="setMe(this.value)"></select></span>
-    <span class="pill sync-badge" id="sync-status">● 云同步中</span>
+<header data-page-node-id="u16q8TI2VRqSY6dypmJgV5">
+  <h1 data-page-node-id="72wqFuoe19DqdVUplXZ50M">🏠 合租生活管家</h1>
+  <p data-page-node-id="z6KD2DkAXuPxfTvWe9KH9k">账本透明 · 排班清晰 · 物品有账 · 公约有据 · 数据同步</p>
+  <div class="topbar" data-page-node-id="gDeftDiX4nvPwzFWUFH1lP">
+    <span class="pill" style="cursor:pointer" onclick="openRoomModal()" title="点击设置房间/密码/成员" data-page-node-id="fIGj4zpdHLxGNUhDRu8WX3">🚪 房间 <b id="room-code" data-page-node-id="OKUKjRDMSUDaCIHFC4knPP">------</b>　⚙️</span>
+    <span class="pill" data-page-node-id="AqTLZzCKwYgF1XhKfP6KWa">我是 <select id="me-select" onchange="setMe(this.value)" data-page-node-id="gmpQ1mvh1H4ZKroxS6YdMH"></select></span>
+    <span class="pill sync-badge" id="sync-status" data-page-node-id="eX0yrODs6FJK7wgnAWeUl6">● 云同步中</span>
   </div>
 </header>
 
-<div class="container">
-  <nav>
-    <button class="active" data-tab="bill">💰 费用分摊</button>
-    <button data-tab="clean">🧹 值日日历</button>
-    <button data-tab="items">📦 公共物品</button>
-    <button data-tab="rules">📜 室友公约</button>
+<div class="container" data-page-node-id="c0PuShnXRUb00eCk89WTm2">
+  <nav data-page-node-id="UgxRBoljVYDsvxpPnlFHyH">
+    <button class="active" data-tab="bill" data-page-node-id="kFOhswPA1bMYk4WwGgfZEd">💰 费用分摊</button>
+    <button data-tab="clean" data-page-node-id="zVzgVZ3otGWmtpbwA8xTcG">🧹 值日日历</button>
+    <button data-tab="items" data-page-node-id="wBDjupMoDFDar4OvzpevXO">📦 公共物品</button>
+    <button data-tab="rules" data-page-node-id="0zZdBhNrDp3e3bAGT5Jpbb">📜 室友公约</button>
   </nav>
 
   <!-- ============ 费用 ============ -->
-  <section id="tab-bill">
-    <div class="card">
-      <h2>💰 费用 AA 分摊 <span class="tag">自动按人均摊 · 结清留痕 · 凭证可追溯</span></h2>
-      <div class="form-row">
-        <input id="bill-item" placeholder="项目，如：8月水费">
-        <input id="bill-amount" type="number" placeholder="金额 ¥" style="flex:.5">
-        <select id="bill-payer"></select>
-        <input id="bill-date" type="date">
-        <label class="ghost" style="display:inline-flex;align-items:center;gap:4px;cursor:pointer">📷 凭证<input type="file" id="bill-receipt" accept="image/*" hidden onchange="pendingReceipt(this)"></label>
-        <button class="primary" onclick="addBill()">记一笔</button>
+  <section id="tab-bill" data-page-node-id="KblDsiGKegPtdVhGWUiFNs">
+    <div class="card" data-page-node-id="UFyDOuvmsemdQBxF4ax1Gj">
+      <h2 data-page-node-id="vVT40KfjWgE4LzGCi4ZhdL">💰 费用 AA 分摊 <span class="tag" data-page-node-id="qFCUmufR2To33Zfl7bLw48">自动按人均摊 · 结清留痕 · 凭证可追溯</span></h2>
+      <div class="form-row" data-page-node-id="NQBVM1VbqTVr8DgRZZhpGB">
+        <input id="bill-item" placeholder="项目，如：8月水费" data-page-node-id="DDPi3txJZ8cURzz7Io4sFu">
+        <input id="bill-amount" type="number" placeholder="金额 ¥" style="flex:.5" data-page-node-id="eBaPUSHa3kMloOW3dcatQC">
+        <select id="bill-payer" data-page-node-id="jLIXAVJgv7VnAi4h4YaIao"></select>
+        <input id="bill-date" type="date" data-page-node-id="y0qVLeSCPcw008N6JPG0uF">
+        <label class="ghost" style="display:inline-flex;align-items:center;gap:4px;cursor:pointer" data-page-node-id="coCtAPgnW5rCUpBvOFdxta">📷 凭证<input type="file" id="bill-receipt" accept="image/*" hidden onchange="pendingReceipt(this)" data-page-node-id="u0VHCsGaVXDSbgqGFKXGxC"></label>
+        <button class="primary" onclick="addBill()" data-page-node-id="rF4SeImJEUhUj3XmFZmQTx">记一笔</button>
       </div>
-      <span id="receipt-hint" class="muted"></span>
+      <span id="receipt-hint" class="muted" data-page-node-id="rgPF0swoolflbrRFhJQdJ5"></span>
 
-      <h3 class="sec">最新应收 / 应付（仅统计未结清账单）</h3>
-      <div class="balance-cards" id="balance-cards"></div>
-      <div class="summary-line" id="transfer-suggest"></div>
+      <h3 class="sec" data-page-node-id="EHnkwhPAliVcERHQqJEZBV">最新应收 / 应付（仅统计未结清账单）</h3>
+      <div class="balance-cards" id="balance-cards" data-page-node-id="ttlkWykXacHp7yMsk8H1Nq"></div>
+      <div class="summary-line" id="transfer-suggest" data-page-node-id="uOWkbFiJ7OfPKUnaPruHGH"></div>
 
-      <h3 class="sec">未结清账单 <span class="tag">勾选「结清」即转入已结清并同步月账单</span></h3>
-      <table>
-        <thead><tr><th>结清</th><th>日期</th><th>项目</th><th>金额</th><th>垫付人</th><th>人均</th><th>凭证</th><th></th></tr></thead>
-        <tbody id="bill-open-body"></tbody>
+      <h3 class="sec" data-page-node-id="3Ihv3W3uNCxDlo7cWVctP5">未结清账单 <span class="tag" data-page-node-id="1qXNTd750HcmLkGReIVmei">勾选「结清」即转入已结清并同步月账单</span></h3>
+      <table data-page-node-id="q8auZyOSKw0fj3pkTRcgJg">
+        <thead data-page-node-id="WNxwiEiaOGlnRY6aouqZmc"><tr data-page-node-id="bgAyu5E7E8P3SRZEgjLxMY"><th data-page-node-id="FHDjkQ0yOIKh1xSh5ntZxL">结清</th><th data-page-node-id="QjHOHT3DZW3b7YxS65zzRo">日期</th><th data-page-node-id="nCP5VFwxFbmWhZBIxzhOf5">项目</th><th data-page-node-id="kDpI5kbcYeMhMRFDz5GumB">金额</th><th data-page-node-id="xRkCKGUc9BvU9d5VftFpP1">垫付人</th><th data-page-node-id="pJzZRLhbjsmjjpyJh17G65">人均</th><th data-page-node-id="6bYiss4On25n76JbQQeTRQ">凭证</th><th data-page-node-id="z2lCEAiWC7yegTihc8vvtx"></th></tr></thead>
+        <tbody id="bill-open-body" data-page-node-id="1Ej9Q1zJ3Vp8r3IGYg1L2C"></tbody>
       </table>
 
-      <h3 class="sec">月账单明细 <span class="tag">按月归档，结清状态实时更新</span></h3>
-      <div id="monthly-detail"></div>
+      <h3 class="sec" data-page-node-id="ldILy57xs9piY8BX7zlXCY">月账单明细 <span class="tag" data-page-node-id="UnYpCIhfygC7Uv6aMMt93J">按月归档，结清状态实时更新</span></h3>
+      <div id="monthly-detail" data-page-node-id="exmCTIJvX4EbR9e1txuFa3"></div>
     </div>
   </section>
 
   <!-- ============ 值日日历 ============ -->
-  <section id="tab-clean" hidden>
-    <div class="card">
-      <h2>🧹 清洁值日日历 <span class="tag">点开任意日期查看任务详情 · 支持一键轮值</span></h2>
-      <div class="cal-head">
-        <button class="ghost" onclick="calMove(-1)">← 上月</button>
-        <span class="cal-title" id="cal-title"></span>
-        <button class="ghost" onclick="calMove(1)">下月 →</button>
-        <span style="flex:1"></span>
-        <button class="primary" onclick="autoRoster()">✨ 一键生成本月轮值</button>
+  <section id="tab-clean" hidden data-page-node-id="MARLHxDFZliYtH3FFzQAiE">
+    <div class="card" data-page-node-id="Spw7JKF7TS4b2TxmknLbZ7">
+      <h2 data-page-node-id="IVsrupQ502VZH19uO6XvYw">🧹 清洁值日日历 <span class="tag" data-page-node-id="U45H18uFH162b5yLgfHsUG">点开任意日期查看任务详情 · 支持一键轮值</span></h2>
+      <div class="cal-head" data-page-node-id="vHMyiEGGJgT2a0sOPUJKnx">
+        <button class="ghost" onclick="calMove(-1)" data-page-node-id="EXIVbovOuAJOIxT1kIdZvZ">← 上月</button>
+        <span class="cal-title" id="cal-title" data-page-node-id="Y0AfmP5DAAgOZbLfF5gsFT"></span>
+        <button class="ghost" onclick="calMove(1)" data-page-node-id="8qlfAoPqeOBf3bf79bbUsd">下月 →</button>
+        <span style="flex:1" data-page-node-id="UV7Dw5YaYG0xmt0YOfXebi"></span>
+        <button class="primary" onclick="autoRoster()" data-page-node-id="HiHGPH7xzer3cbFOcBQUfz">✨ 一键生成本月轮值</button>
       </div>
-      <div class="cal" id="calendar"></div>
-      <div class="muted" style="margin-top:10px">💡 点击任意日期格子：查看/新增当天值日任务、打卡完成。橙=待完成，绿=已完成。</div>
+      <div class="cal" id="calendar" data-page-node-id="TdiKm0m2MAz13hpyAjaXP4"></div>
+      <div class="muted" style="margin-top:10px" data-page-node-id="pQH2dMvzfkfLdQDE8Lw2bT">💡 点击任意日期格子：查看/新增当天值日任务、打卡完成。橙=待完成，绿=已完成。</div>
     </div>
   </section>
 
   <!-- ============ 公共物品 ============ -->
-  <section id="tab-items" hidden>
-    <div class="card">
-      <h2>📦 公共物品登记与提醒 <span class="tag">库存动态 · 补货预警 · 操作留痕</span></h2>
-      <div class="form-row">
-        <input id="item-name" placeholder="物品名称">
-        <select id="item-cat"><option>清洁用品</option><option>厨房用品</option><option>卫生用品</option><option>纸品</option><option>其他</option></select>
-        <select id="item-owner"></select>
-        <input id="item-qty" type="number" step="0.1" placeholder="数量" style="flex:.5">
-        <input id="item-unit" placeholder="单位(瓶/包)" style="flex:.5">
-        <input id="item-th" type="number" step="0.1" placeholder="提醒线" style="flex:.5">
-        <button class="primary" onclick="addItem()">登记</button>
+  <section id="tab-items" hidden data-page-node-id="7alSVdSVaDKvE06FRY7kXd">
+    <div class="card" data-page-node-id="ZNGuu1Nnq9jk77Pj1luBS0">
+      <h2 data-page-node-id="Anv3tPXsdyGiCd5WsArxQg">📦 公共物品登记与提醒 <span class="tag" data-page-node-id="tBsfcN3cY2QDXn8YQlAJx6">库存动态 · 补货预警 · 操作留痕</span></h2>
+      <div class="form-row" data-page-node-id="u6PZ1yBNLhK7HBrNibLnga">
+        <input id="item-name" placeholder="物品名称" data-page-node-id="VQzBaEE8RFOmghRDWDerUN">
+        <select id="item-cat" data-page-node-id="7QpkXHv8xgglhFOhodFrCq"><option data-page-node-id="XypkYcvsiLU18gEoE4KtJ5">清洁用品</option><option data-page-node-id="eFcoeclOkuBIGT8OP6TYsP">厨房用品</option><option data-page-node-id="hL74mz26EW0LYqvRqAVMN4">卫生用品</option><option data-page-node-id="uBZnAnMe6YjvjYxqEwhDbo">纸品</option><option data-page-node-id="lRq6I8T4hWEU0wisp6qK8s">其他</option></select>
+        <select id="item-owner" data-page-node-id="CYD3umyLAjXmoJBFsGMZcp"></select>
+        <input id="item-qty" type="number" step="0.1" placeholder="数量" style="flex:.5" data-page-node-id="uQDO8Rt9GG9cu0ncFaKddD">
+        <input id="item-unit" placeholder="单位(瓶/包)" style="flex:.5" data-page-node-id="Bm8HzAt3ru1oFEnrKDL7pR">
+        <input id="item-th" type="number" step="0.1" placeholder="提醒线" style="flex:.5" data-page-node-id="FpzPdGUM973mGR4GHUJnOR">
+        <button class="primary" onclick="addItem()" data-page-node-id="T6jftmww32mF6jJFFEU2uM">登记</button>
       </div>
-      <div class="filter-chips" id="item-filters"></div>
-      <table>
-        <thead><tr><th>物品</th><th>类别</th><th>购买人</th><th style="width:150px">当前库存</th><th>状态</th><th>最近动态</th><th style="width:150px">操作</th></tr></thead>
-        <tbody id="item-body"></tbody>
+      <div class="filter-chips" id="item-filters" data-page-node-id="iq8rdiIaZwHSyKNUpLwLOH"></div>
+      <table data-page-node-id="p7SlsBXqtNc9MMgkPyiYQv">
+        <thead data-page-node-id="SNo7e6UC2JGJBXNvq6ORhD"><tr data-page-node-id="Ocwowo9sRUlYktviyzmLGv"><th data-page-node-id="528KLMDg1DtdI3AlQe4YnK">物品</th><th data-page-node-id="QXMUGQe2DeiEh2nHauQIik">类别</th><th data-page-node-id="U2C8swNFFV54rTPKnot1Wi">购买人</th><th style="width:150px" data-page-node-id="ZkJ8PFPer8dH87upn0KBZe">当前库存</th><th data-page-node-id="zUWinp0D0ikhypETueN8ct">状态</th><th data-page-node-id="SymxXMVnT4G2093b2ixHqY">最近动态</th><th style="width:150px" data-page-node-id="QgKCF3k1qj4L9EfWyIFQHc">操作</th></tr></thead>
+        <tbody id="item-body" data-page-node-id="i7NKHCK2pbhYqldc2G1H9Q"></tbody>
       </table>
-      <div id="item-alerts"></div>
+      <div id="item-alerts" data-page-node-id="1DB3oRAbUyXEB9LEjSQd04"></div>
     </div>
   </section>
 
   <!-- ============ 公约 ============ -->
-  <section id="tab-rules" hidden>
-    <div class="card">
-      <h2>📜 室友公约 <span class="tag">白纸黑字 · 全员逐条确认留名</span></h2>
-      <div class="form-row">
-        <input id="rule-text" placeholder="公约条目，如：23点后请佩戴耳机">
-        <button class="primary" onclick="addRule()">新增公约</button>
+  <section id="tab-rules" hidden data-page-node-id="m41OupyhQhetaIiDUGFqCa">
+    <div class="card" data-page-node-id="tQrnSFwkUezbOKNgAFO7Lf">
+      <h2 data-page-node-id="winEPIHlOAW41oF6v6vJh2">📜 室友公约 <span class="tag" data-page-node-id="e8tWq5yyQHOYwTkiWzidmP">白纸黑字 · 全员逐条确认留名</span></h2>
+      <div class="form-row" data-page-node-id="2mm7BuGpS7DBHyCVI8FW9e">
+        <input id="rule-text" placeholder="公约条目，如：23点后请佩戴耳机" data-page-node-id="nffHppNlz5bxKU7sRpYPWl">
+        <button class="primary" onclick="addRule()" data-page-node-id="z6jyZAL5fpPwYs4SnjmfFF">新增公约</button>
       </div>
-      <div class="muted" style="margin-bottom:8px">确认将以当前身份「<b id="me-hint"></b>」留名。</div>
-      <table>
-        <thead><tr><th>条目</th><th style="width:40%">确认情况</th><th></th></tr></thead>
-        <tbody id="rule-body"></tbody>
+      <div class="muted" style="margin-bottom:8px" data-page-node-id="DERwSpjQSSAtmgHAjkPcxi">确认将以当前身份「<b id="me-hint" data-page-node-id="FFPMnl6LGXES4n4ZaFOUUc"></b>」留名。</div>
+      <table data-page-node-id="TD3zI28iSEUEDCzwuXBPIv">
+        <thead data-page-node-id="cArrkEH0ZFbkeKzdryPXUO"><tr data-page-node-id="LBpr6PmKTsV5vnx921NGbV"><th data-page-node-id="zYz052VPQe4hwp8xS3bNAn">条目</th><th style="width:40%" data-page-node-id="wimuTtLgH7AQkqbivGASTc">确认情况</th><th data-page-node-id="KdqKwB6fCbFMCYDFMapQ5a"></th></tr></thead>
+        <tbody id="rule-body" data-page-node-id="joTOxkTZNxsPCQIKzhsfjF"></tbody>
       </table>
     </div>
   </section>
 
-  <footer>合租生活管家 HomeMate · v1.1 · 房间码 + 密码保护 · 云同步 · 凭证与操作留痕可追溯</footer>
+  <footer data-page-node-id="ZQsWgCCdDzrnOUnCc731zQ">合租生活管家 HomeMate · v1.1 · 房间码 + 密码保护 · 云同步 · 凭证与操作留痕可追溯</footer>
 </div>
 
-<div class="modal-mask" id="modal-mask" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
-<div class="toast" id="toast"></div>
+<div class="modal-mask" id="modal-mask" onclick="if(event.target===this)closeModal()" data-page-node-id="yDr49AepGjkxurqGcunPEk"><div class="modal" id="modal" data-page-node-id="xiNeryUqCeQRjhhWDF2KAp"></div></div>
+<div class="toast" id="toast" data-page-node-id="rE0s8H0xJntGtxSiwuEgc9"></div>
 
 <script>
 // ================= 基础工具 =================
@@ -326,9 +326,9 @@ function openRoomModal(){
       <button class="primary" onclick="roomModalJoin()">🔑 加入房间</button>
       <button class="ghost" onclick="roomModalCreate()">✨ 创建新房间</button>
     </div>
-    <h3 class="sec">室友成员管理 <span class="tag">分摊人数与身份以此为准</span></h3>
-    <div class="form-row"><input id="new-roommate" placeholder="新室友昵称"><button class="primary" onclick="addRoommate()">添加成员</button></div>
-    <div class="filter-chips" id="roommate-list"></div>
+    <h3 class="sec">室友成员管理 <span class="tag">改名后历史账单/值日/物品记录自动同步更新</span></h3>
+    <div id="member-list"></div>
+    <div class="form-row" style="margin-top:10px"><input id="new-roommate" placeholder="新室友昵称"><button class="primary" onclick="addRoommate()">添加成员</button></div>
     <div style="text-align:right;margin-top:8px"><button class="ghost" onclick="closeModal()">关闭</button></div>`);
   renderRoommates();
 }
@@ -648,9 +648,29 @@ function delRoommate(name){
   persist(); renderAll(); openRoomModal();
 }
 function renderRoommates(){
-  $('roommate-list').innerHTML = STATE.roommates.map(r =>
-    `<span class="fchip on" style="background:var(--primary-light);color:var(--primary);border-color:transparent">${esc(r)} <b style="cursor:pointer" onclick="delRoommate('${esc(r)}')" title="移除">×</b></span>`).join('');
   $('me-select').innerHTML = STATE.roommates.map(r=>`<option ${r===me()?'selected':''}>${esc(r)}</option>`).join('');
+  const ml = $('member-list');
+  if (ml) ml.innerHTML = STATE.roommates.map((r,i) => `
+    <div class="form-row" style="margin-bottom:6px">
+      <input id="mem-${i}" value="${esc(r)}" maxlength="12" title="直接编辑昵称">
+      <button class="ghost" onclick="renameMember('${esc(r)}', document.getElementById('mem-${i}').value)">✏️ 改名</button>
+      <button class="del" onclick="delRoommate('${esc(r)}')">移除</button>
+    </div>`).join('');
+}
+function renameMember(oldName, newName){
+  newName = (newName||'').trim();
+  if (!newName) return toast('昵称不能为空');
+  if (newName === oldName) return;
+  if (STATE.roommates.includes(newName)) return toast('「'+newName+'」已存在，换个昵称吧');
+  const map = n => n === oldName ? newName : n;
+  STATE.roommates = STATE.roommates.map(map);
+  STATE.bills.forEach(b => { b.payer = map(b.payer); if (b.settledBy) b.settledBy = map(b.settledBy); });
+  STATE.duties.forEach(d => d.person = map(d.person));
+  STATE.items.forEach(it => { it.owner = map(it.owner); (it.logs||[]).forEach(l => l.who = map(l.who)); });
+  STATE.rules.forEach(r => r.confirmedBy = r.confirmedBy.map(map));
+  if (me() === oldName) localStorage.setItem('homemate_me', newName);
+  persist(); renderAll(); openRoomModal();
+  toast('已改名为「'+newName+'」，历史记录已同步更新 ✓');
 }
 
 // ================= Tab & 渲染总入口 =================
